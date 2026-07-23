@@ -3,6 +3,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 <img width="1040" height="600" alt="VPN Panel architecture: Smart DNS, router VPN, endpoint monitoring, and VDS control panel" src="https://github.com/user-attachments/assets/fb3ba2ee-cdaf-4c26-a755-ea629e0dcad3" />
+<img width="648" height="575" alt="image" src="https://github.com/user-attachments/assets/d7ea603f-afc3-4791-9740-2f4e6f01b380" />
+<img width="824" height="591" alt="image" src="https://github.com/user-attachments/assets/6bfecfb7-4f37-4a37-a289-dbbe0fec2e2f" />
+
+
 
 VPN Panel is an open-source, self-hosted control plane for **Smart DNS**,
 **router-wide VPN routing**, **Xray/sing-box subscriptions**, **endpoint
