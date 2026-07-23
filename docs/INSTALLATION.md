@@ -13,7 +13,7 @@ create database vpn_panel owner vpnpanel;
 ## 2. Install the application
 
 ```bash
-git clone https://github.com/OWNER/vpn-panel.git
+git clone https://github.com/meanwebuser/vpn-panel.git
 cd vpn-panel
 npm ci
 cp .env.example .env

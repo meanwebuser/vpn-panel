@@ -30,7 +30,7 @@ for the Android target. These are never downloaded from this repository.
 ## Quick start
 
 ```bash
-git clone https://github.com/OWNER/vpn-panel.git
+git clone https://github.com/meanwebuser/vpn-panel.git
 cd vpn-panel
 npm ci
 cp .env.example .env
