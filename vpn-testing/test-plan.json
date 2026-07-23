@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "profiles": {
+    "quick": {
+      "stages": [
+        "preflight",
+        "gate"
+      ],
+      "parallelism": 2,
+      "description": "Fast transport and gate check"
+    },
+    "health": {
+      "stages": [
+        "preflight",
+        "gate",
+        "sites",
+        "udp"
+      ],
+      "parallelism": 2,
+      "description": "Endpoint eligibility check"
+    },
+    "benchmark": {
+      "stages": [
+        "preflight",
+        "gate",
+        "sites",
+        "udp",
+        "quic",
+        "throughput"
+      ],
+      "parallelism": 1,
+      "description": "Full transport benchmark"
+    }
+  },
+  "targets": {
+    "local-docker-xray": {
+      "networkClass": "lan",
+      "client": "xray",
+      "accessMethod": "socks-proxy",
+      "wireMethod": "wire-internal",
+      "hostRole": "local",
+      "runner": "local",
+      "host": "localhost"
+    },
+    "native-client": {
+      "networkClass": "external-unknown",
+      "client": "xray",
+      "accessMethod": "socks-proxy",
+      "wireMethod": "unknown",
+      "hostRole": "native-client",
+      "runner": "ssh",
+      "host": "tester@example.com"
+    },
+    "android-adb": {
+      "networkClass": "external-mobile",
+      "client": "xray",
+      "accessMethod": "socks-proxy",
+      "wireMethod": "4g",
+      "hostRole": "android",
+      "runner": "android-adb",
+      "host": "tester@example.com",
+      "requiredTransport": "cellular"
+    }
+  },
+  "testTargets": [
+    {
+      "id": "local-docker-xray",
+      "planTarget": "local-docker-xray",
+      "label": "Local · Xray Docker",
+      "runner": "ssh",
+      "sshHost": "tester@example.com",
+      "sshPort": 22,
+      "mode": "docker",
+      "engine": "xray",
+      "enabled": false
+    },
+    {
+      "id": "native-client",
+      "planTarget": "native-client",
+      "label": "Native client · Xray",
+      "runner": "ssh",
+      "sshHost": "tester@example.com",
+      "sshPort": 22,
+      "mode": "native",
+      "engine": "xray",
+      "enabled": false
+    },
+    {
+      "id": "android-adb",
+      "planTarget": "android-adb",
+      "label": "Android · ADB",
+      "runner": "android-adb",
+      "sshHost": "tester@example.com",
+      "sshPort": 22,
+      "mode": "android",
+      "engine": "xray",
+      "adbSerial": "REPLACE_WITH_ADB_SERIAL",
+      "enabled": false
+    }
+  ],
+  "httpChecks": [
+    {
+      "id": "example-gate",
+      "label": "Example gate",
+      "url": "https://example.org",
+      "group": "gate",
+      "acceptedCodes": [
+        200
+      ],
+      "timeoutSeconds": 8
+    },
+    {
+      "id": "wikipedia",
+      "label": "Wikipedia",
+      "url": "https://www.wikipedia.org",
+      "group": "world",
+      "acceptedCodes": [
+        200,
+        301,
+        302,
+        307,
+        308
+      ],
+      "timeoutSeconds": 12
+    },
+    {
+      "id": "iana",
+      "label": "IANA",
+      "url": "https://www.iana.org",
+      "group": "world",
+      "acceptedCodes": [
+        200,
+        301,
+        302,
+        307,
+        308
+      ],
+      "timeoutSeconds": 12
+    }
+  ],
+  "udpCheck": {
+    "id": "dns-udp",
+    "host": "1.1.1.1",
+    "port": 53,
+    "queryName": "example.org",
+    "timeoutSeconds": 5
+  },
+  "quicCheck": {
+    "id": "http3",
+    "url": "https://cloudflare-quic.com",
+    "timeoutSeconds": 12
+  },
+  "throughput": {
+    "url": "https://speed.cloudflare.com/__down",
+    "bytes": 5000000,
+    "timeoutSeconds": 25
+  },
+  "eligibility": {
+    "requiredGateChecks": [
+      "example-gate"
+    ],
+    "minimumSiteRatio": 0.66,
+    "requireUdp": false
+  },
+  "generatedFrom": "manual-example",
+  "endpointExpectations": {},
+  "endpointCatalog": [
+    {
+      "id": "demo-edge",
+      "label": "Demo edge",
+      "kind": "vless-reality",
+      "address": "edge.example.com",
+      "port": 443,
+      "enabled": false
+    }
+  ]
+}

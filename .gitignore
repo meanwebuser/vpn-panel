@@ -1,0 +1,13 @@
+node_modules
+dist/
+.env
+config/secure.json
+*.bak_*
+logs/
+vpn-testing/results/
+vpn-testing/configs/
+data/*.json
+output/
+*.log
+*.apk
+android-test-agent/build/

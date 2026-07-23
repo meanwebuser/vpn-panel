@@ -1,0 +1,36 @@
+{
+  "defaults": {
+    "fingerprint": "chrome",
+    "flow": "xtls-rprx-vision",
+    "sni": "example.com",
+    "domain_strategy": "IPIfNonMatch"
+  },
+  "nodes": [
+    {
+      "id": "demo-edge",
+      "label": "Demo edge",
+      "enabled": false,
+      "kind": "vless-reality",
+      "address": "edge.example.com",
+      "port": 443,
+      "public_key": "REPLACE_WITH_YOUR_PUBLIC_KEY",
+      "short_id": "REPLACE_WITH_YOUR_SHORT_ID"
+    }
+  ],
+  "server_configs": {},
+  "happ": {
+    "provider_code": "",
+    "auth_key": "",
+    "base_url": "https://happ-proxy.com"
+  },
+  "vps": {
+    "host": "",
+    "port": 22,
+    "username": "",
+    "password": "",
+    "private_key": "",
+    "passphrase": "",
+    "label": ""
+  },
+  "vps_list": []
+}
