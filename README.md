@@ -1,4 +1,5 @@
 # VPN Panel
+<img width="1040" height="600" alt="image" src="https://github.com/user-attachments/assets/fb3ba2ee-cdaf-4c26-a755-ea629e0dcad3" />
 
 An extensible TypeScript/Fastify control panel for managing VLESS-compatible
 VPN endpoints, subscriptions, health checks, and an administrative UI.
